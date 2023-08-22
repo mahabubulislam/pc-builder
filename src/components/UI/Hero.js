@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Hero = () => {
   return (
     <section className='hero'>
-      <div className='hero-content flex-col lg:flex-row gap-20 max-w-full px-32 pt-10'>
+      <div className='hero-content flex-col lg:flex-row gap-20 max-w-full  pt-10'>
         <Image
           width={800}
           height={400}
