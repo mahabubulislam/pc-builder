@@ -81,7 +81,7 @@ const NavBar = () => {
         </ul>
       </div>
       <div className='navbar-end'>
-        <Link href={'/pc-builder'} className='btn btn-primary'>
+        <Link href={'/pc-builder'} className='btn bg-teal-400 font-bold'>
           PC Builder
         </Link>
       </div>

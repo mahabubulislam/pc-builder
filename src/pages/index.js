@@ -1,8 +1,9 @@
+import FeaturedCategories from '@/components/UI/FeaturedCategories'
 import FeaturedProduct from '@/components/UI/FeaturedProduct'
 import Hero from '@/components/UI/Hero'
 import Head from 'next/head'
 
-export default function Home({ products }) {
+export default function Home({ products, categories }) {
   return (
     <>
       <Head>
@@ -16,7 +17,9 @@ export default function Home({ products }) {
       </Head>
       <main className=' px-14'>
         <Hero />
+
         <FeaturedProduct products={products} />
+        <FeaturedCategories categories={categories} />
       </main>
     </>
   )
@@ -24,6 +27,7 @@ export default function Home({ products }) {
 export const getStaticProps = async () => {
   const productRes = await fetch('https://mrittik-server.vercel.app/products')
   const products = await productRes.json()
-
-  return { props: { products } }
+  const categoryRes = await fetch('https://mrittik-server.vercel.app/products')
+  const categories = await categoryRes.json()
+  return { props: { products, categories } }
 }

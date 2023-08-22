@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.category:hover figure {
+  transform: scale(1.5);
+}
