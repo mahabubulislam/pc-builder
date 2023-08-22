@@ -1,3 +1,4 @@
+import Hero from '@/components/UI/Hero'
 import Head from 'next/head'
 
 export default function Home() {
@@ -12,8 +13,8 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main className={`h-screen p-5 `}>
-        <h1></h1>
+      <main className='h-screen'>
+        <Hero />
       </main>
     </>
   )
