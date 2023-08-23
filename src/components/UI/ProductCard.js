@@ -5,11 +5,16 @@ const ProductCard = ({ product }) => {
   const router = useRouter()
   return (
     <div
-      onClick={() => router.push(`/products/${product.id}`)}
-      key={product.id}
-      className='card w-96 pt-5 max-h-80 bg-base-100 shadow-xl mt-10 cursor-pointer hover:scale-105 duration-300 ease-linear hover:bg-teal-100'>
-      <figure>
-        <Image width={100} height={100} src={product.img} alt={product.name} />
+      onClick={() => router.push(`/products/${product._id}`)}
+      key={product._id}
+      className='card w-96 pt-5  bg-base-100 shadow-xl mt-10 cursor-pointer hover:scale-105 duration-300 ease-linear'>
+      <figure className='overflow-visible'>
+        <Image
+          width={200}
+          height={100}
+          src={product.image}
+          alt={product.name}
+        />
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>
@@ -20,7 +25,7 @@ const ProductCard = ({ product }) => {
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <p>$ {product.price}</p>
         <div className='card-actions justify-end'>
-          <div className='badge badge-outline'>{product.categoryName}</div>
+          <div className='badge badge-outline'>{product.category}</div>
         </div>
       </div>
     </div>
