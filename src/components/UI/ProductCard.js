@@ -1,8 +1,11 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const ProductCard = ({ product }) => {
+  const router = useRouter()
   return (
     <div
+      onClick={() => router.push(`/products/${product.id}`)}
       key={product.id}
       className='card w-96 pt-5 max-h-80 bg-base-100 shadow-xl mt-10 cursor-pointer hover:scale-105 duration-300 ease-linear hover:bg-teal-100'>
       <figure>

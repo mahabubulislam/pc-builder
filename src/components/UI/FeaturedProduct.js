@@ -3,8 +3,11 @@ import ProductCard from './ProductCard'
 const FeaturedProduct = ({ products }) => {
   return (
     <div className='mt-10'>
-      <h3 className='text-3xl font-bold mb-10'>Featured Products</h3>
-      <div className='grid grid-cols-3 gap-5'>
+      <div className='text-center my-5 italic'>
+        <h3 className='text-3xl font-bold mb-1 '>Featured Products</h3>
+        <p>Choose Your Favorite Product from Featured Products!</p>
+      </div>
+      <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5'>
         {products?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
