@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import StarRatings from 'react-star-ratings'
 
 const ProductDetails = ({ product }) => {
   const {
@@ -18,8 +19,8 @@ const ProductDetails = ({ product }) => {
       <Head>
         <title>Product Details | {name}</title>
       </Head>
-      <section className='p-20'>
-        <div className='flex sm:flex-col md:flex-row gap-14  items-start'>
+      <section className='md:p-10 lg:p-20'>
+        <div className='flex flex-col lg:flex-row gap-14  items-start'>
           <div>
             <Image
               className='max-h-96'
@@ -29,28 +30,25 @@ const ProductDetails = ({ product }) => {
               alt=''
             />
           </div>
-          <div className='p-10'>
+          <div className='p-5'>
             <h3 className='text-2xl font-semibold'>{name}</h3>
             <p cl>{description}</p>
-            <div className='flex items-center gap-5'>
-              <div className='rating rating-xs'>
-                {[...Array(5)].map((_, i) => (
-                  <input
-                    key={`review-${i}`}
-                    type='radio'
-                    name='rating-2'
-                    className='mask mask-star-2 bg-orange-400'
-                    checked={i !== Math.floor(averageRating)}
-                    disabled
-                  />
-                ))}
+            <div className='flex items-center gap-5 '>
+              <div>
+                <StarRatings
+                  starDimension='16px'
+                  starSpacing='0px'
+                  rating={averageRating}
+                  starRatedColor='#ffc012'
+                  starEmptyColor='#cfc19a63'
+                />
               </div>
-              <p className='text-sm'>
+              <p className='text-sm mt-1'>
                 {reviews.length}
                 {reviews.length > 1 ? ' reviews' : ' review'}
               </p>
             </div>
-            <div className='flex gap-5 my-3'>
+            <div className='flex gap-5 my-3  flex-wrap  '>
               <div className='badge p-3 rounded-md bg-gray-300'>
                 <span>
                   Price: <strong> {price}</strong>
@@ -77,7 +75,7 @@ const ProductDetails = ({ product }) => {
               <ul>
                 {Object.entries(keyFeatures).map(([feature, value], i) => (
                   <li key={`feature-${i}`} className='flex gap-3'>
-                    <span className='capitalize flex-1'>{feature}</span>
+                    <span className='capitalize w-40'>{feature}</span>
                     <span>:</span>
                     <span className='flex-1 font-semibold'> {value}</span>
                   </li>
@@ -86,7 +84,7 @@ const ProductDetails = ({ product }) => {
             </div>
           </div>
         </div>
-        <div>
+        <div className='p-5'>
           {/* Render individual ratings */}
 
           <h3 className='text-2xl font-bold'>Customer Reviews</h3>
@@ -96,18 +94,15 @@ const ProductDetails = ({ product }) => {
             {reviews.map((review, index) => (
               <div
                 key={`review-${index}`}
-                className='bg-white rounded-md p-5 my-5'>
+                className='bg-white rounded-md p-5 my-5 shadow-sm border '>
                 <h4 className='text-xl font-medium'>{review.comment}</h4>
-                {[...Array(5)].map((_, i) => (
-                  <input
-                    key={`user-review-${i}`}
-                    type='radio'
-                    name='rating-2'
-                    className='mask mask-star-2 bg-orange-400'
-                    checked={i !== Math.floor(review.rating)}
-                    disabled
-                  />
-                ))}
+                <StarRatings
+                  starDimension='16px'
+                  starSpacing='0px'
+                  rating={review.rating}
+                  starRatedColor='#ffc012'
+                  starEmptyColor='#cfc19a63'
+                />
                 <span className='font-medium ml-3'>By {review.user}</span>
               </div>
             ))}

@@ -3,7 +3,7 @@ import FeaturedProducts from '@/components/UI/FeaturedProducts'
 import Hero from '@/components/UI/Hero'
 import Head from 'next/head'
 
-export default function Home({ products, categories }) {
+export default function Home({ products, categories, heroProduct }) {
   return (
     <>
       <Head>
@@ -16,10 +16,9 @@ export default function Home({ products, categories }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main className=' px-14'>
-        <Hero />
-
-        <FeaturedProducts products={products} />
+        <Hero heroProduct={heroProduct} />
         <FeaturedCategories categories={categories} />
+        <FeaturedProducts products={products} />
       </main>
     </>
   )
@@ -27,7 +26,13 @@ export default function Home({ products, categories }) {
 export const getStaticProps = async () => {
   const productRes = await fetch('http://localhost:3000/api/products')
   const products = await productRes.json()
-  const categoryRes = await fetch('http://localhost:3000/api/categories')
+  const categoryRes = await fetch(
+    'http://localhost:3000/api/categories?featured=true'
+  )
   const categories = await categoryRes.json()
-  return { props: { products, categories } }
+  const heroProductRes = await fetch(
+    `http://localhost:3000/api/products/64e70f456db70ddcf0a25c6e`
+  )
+  const heroProduct = await heroProductRes.json()
+  return { props: { products, categories, heroProduct } }
 }

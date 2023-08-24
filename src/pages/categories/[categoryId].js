@@ -1,5 +1,20 @@
-const ProductByCategories = () => {
-  return <div></div>
+import ProductCard from '@/components/UI/ProductCard'
+
+const ProductByCategories = ({ products }) => {
+  return (
+    <div className='p-10'>
+      <div className=' my-5 italic'>
+        <h3 className='text-3xl font-bold mb-1 '>
+          Top Selling <span className='capitalize'>{products[0].category}</span>
+        </h3>
+      </div>
+      <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 '>
+        {products?.map((product) => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default ProductByCategories
@@ -19,7 +34,7 @@ export const getStaticProps = async ({ params }) => {
   const res = await fetch(
     `http://localhost:3000/api/categories/${params.categoryId}`
   )
-  const category = await res.json()
+  const products = await res.json()
 
-  return { props: { category } }
+  return { props: { products } }
 }

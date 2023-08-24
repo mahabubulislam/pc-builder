@@ -1,26 +1,39 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 const NavBar = () => {
-  const categories = [
-    { id: 'category-1', name: 'CPU / Processor', path: '/categories/cpu' },
-    { id: 'category-2', name: 'Motherboard', path: '/categories/motherboard' },
-    { id: 'category-3', name: 'RAM', path: '/categories/ram' },
-    {
-      id: 'category-4',
-      name: ' Power Supply Unit',
-      path: '/categories/power-supply'
-    },
-    {
-      id: 'category-5',
-      name: 'Storage Device',
-      path: '/categories/storage-device'
-    },
-    { id: 'category-6', name: 'Monitor', path: '/categories/monitor' },
-    { id: 'category-7', name: 'Others', path: '/categories/others' }
-  ]
+  const [categories, setCategories] = useState([])
+  // const [isLoading, setLoading] = useState(true)
+
+  // const categories = [
+  //   { id: 'category-1', name: 'CPU / Processor', path: '/categories/cpu' },
+  //   { id: 'category-2', name: 'Motherboard', path: '/categories/motherboard' },
+  //   { id: 'category-3', name: 'RAM', path: '/categories/ram' },
+  //   {
+  //     id: 'category-4',
+  //     name: ' Power Supply Unit',
+  //     path: '/categories/power-supply'
+  //   },
+  //   {
+  //     id: 'category-5',
+  //     name: 'Storage Device',
+  //     path: '/categories/storage-device'
+  //   },
+  //   { id: 'category-6', name: 'Monitor', path: '/categories/monitor' },
+  //   { id: 'category-7', name: 'Others', path: '/categories/others' }
+  // ]
+  useEffect(() => {
+    fetch('http://localhost:3000/api/categories')
+      .then((res) => res.json())
+      .then((data) => {
+        // setLoading(false)
+
+        setCategories(data)
+      })
+  }, [])
   const dropdownItems = categories.map((category) => (
-    <li key={category.id}>
-      <Link href={category.path}>{category.name}</Link>
+    <li key={category._id}>
+      <Link href={`/categories/${category._id}`}>{category.name}</Link>
     </li>
   ))
 
