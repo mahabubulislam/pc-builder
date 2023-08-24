@@ -26,7 +26,9 @@ const SelectProductCard = ({ product }) => {
       <div className='card-body'>
         <h2 className='card-title'>
           <Link href={`/products/${product._id}`}> {product.name}</Link>
-          <div className='badge badge-secondary'>NEW</div>
+          <div className='badge badge-secondary'>
+            {product.averageRating > 4 ? 'Top' : 'New'}
+          </div>
         </h2>
         <p>{product.description.slice(0, 50)}...</p>
         <p>$ {product.price}</p>

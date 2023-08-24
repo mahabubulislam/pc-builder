@@ -1,11 +1,10 @@
-import { signOut, useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const NavBar = () => {
   const [categories, setCategories] = useState([])
   const { data } = useSession()
-  console.log(data)
 
   // const [isLoading, setLoading] = useState(true)
 
@@ -64,7 +63,7 @@ const NavBar = () => {
             tabIndex={0}
             className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'>
             <li>
-              <Link href={'/offers'}>Offers</Link>
+              <Link href={'/'}>Home</Link>
             </li>
             <li tabIndex={0}>
               <details>
@@ -72,11 +71,14 @@ const NavBar = () => {
                 <ul className='p-2 z-20'>{dropdownItems}</ul>
               </details>
             </li>
-            {!data?.user && (
-              <li>
-                <Link href={'/login'}>Login</Link>
-              </li>
-            )}
+            <li>
+              {' '}
+              {data?.user ? (
+                <button onClick={() => signOut()}>Logout</button>
+              ) : (
+                <button onClick={() => signIn('github')}>Login</button>
+              )}
+            </li>
           </ul>
         </div>
         <Link href={'/'} className='btn btn-ghost normal-case text-xl'>
@@ -86,7 +88,7 @@ const NavBar = () => {
       <div className='navbar-center hidden lg:flex'>
         <ul className='menu menu-horizontal px-1'>
           <li>
-            <Link href={'/offers'}>Offers</Link>
+            <Link href={'/'}>Home</Link>
           </li>
           <li tabIndex={0}>
             <details>
@@ -99,7 +101,14 @@ const NavBar = () => {
             {data?.user ? (
               <button onClick={() => signOut()}>Logout</button>
             ) : (
-              <Link href={'/login'}>Login</Link>
+              <button
+                onClick={() =>
+                  signIn('github', {
+                    callbackUrl: 'http://localhost:3000/pc-builder'
+                  })
+                }>
+                Login
+              </button>
             )}
           </li>
         </ul>

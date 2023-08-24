@@ -8,7 +8,7 @@ const FeaturedProducts = ({ products }) => {
         <p>Choose Your Favorite Product from Featured Products!</p>
       </div>
       <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 '>
-        {products?.map((product) => (
+        {products?.slice(0, 6).map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
