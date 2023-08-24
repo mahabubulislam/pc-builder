@@ -9,7 +9,7 @@ const FeaturedCategories = ({ categories }) => {
       </div>
       <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
         {categories.map((category) => (
-          <CategoriesCard key={category.id} category={category} />
+          <CategoriesCard key={category._id} category={category} />
         ))}
       </div>
     </div>

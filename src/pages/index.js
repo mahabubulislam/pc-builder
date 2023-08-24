@@ -27,7 +27,7 @@ export default function Home({ products, categories }) {
 export const getStaticProps = async () => {
   const productRes = await fetch('http://localhost:3000/api/products')
   const products = await productRes.json()
-  const categoryRes = await fetch('https://mrittik-server.vercel.app/products')
+  const categoryRes = await fetch('http://localhost:3000/api/categories')
   const categories = await categoryRes.json()
   return { props: { products, categories } }
 }

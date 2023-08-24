@@ -5,7 +5,7 @@ const CategoriesCard = ({ category }) => {
   const router = useRouter()
   return (
     <div
-      onClick={() => router.push(`/categories/${category.name}`)}
+      onClick={() => router.push(`/categories/${category._id}`)}
       className='category card max-h-72 bg-base-100 shadow-xl image-full cursor-pointer overflow-hidden'>
       <figure className='duration-700 ease-in-out'>
         <Image

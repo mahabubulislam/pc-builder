@@ -10,14 +10,13 @@ const ProductDetails = ({ product }) => {
     price,
     description,
     keyFeatures,
-    individualRating,
     averageRating,
     reviews
   } = product
   return (
     <>
       <Head>
-        <title>Product Details | {product.name}</title>
+        <title>Product Details | {name}</title>
       </Head>
       <section className='p-20'>
         <div className='flex sm:flex-col md:flex-row gap-14  items-start'>
@@ -41,22 +40,20 @@ const ProductDetails = ({ product }) => {
                     type='radio'
                     name='rating-2'
                     className='mask mask-star-2 bg-orange-400'
-                    checked={i !== Math.ceil(averageRating)}
+                    checked={i !== Math.floor(averageRating)}
                     disabled
                   />
                 ))}
               </div>
               <p className='text-sm'>
-                {Object.keys(individualRating).length}
-                {Object.keys(individualRating).length > 1
-                  ? ' reviews'
-                  : ' review'}
+                {reviews.length}
+                {reviews.length > 1 ? ' reviews' : ' review'}
               </p>
             </div>
             <div className='flex gap-5 my-3'>
               <div className='badge p-3 rounded-md bg-gray-300'>
                 <span>
-                  Price: <strong> {product.price}</strong>
+                  Price: <strong> {price}</strong>
                 </span>
               </div>
               <div className='badge p-3 rounded-md bg-gray-300'>
@@ -67,6 +64,11 @@ const ProductDetails = ({ product }) => {
               <div className='badge p-3 rounded-md bg-gray-300'>
                 <span>
                   Status: <strong> {status}</strong>
+                </span>
+              </div>
+              <div className='badge p-3 rounded-md bg-gray-300'>
+                <span>
+                  Category: <strong> {category}</strong>
                 </span>
               </div>
             </div>
@@ -86,27 +88,30 @@ const ProductDetails = ({ product }) => {
         </div>
         <div>
           {/* Render individual ratings */}
-          <h3 className='text-2xl font-bold'>Users Ratings:</h3>
-          <ul>
-            {Object.entries(individualRating).map(([user, rating]) => (
-              <li key={user}>
-                {user}: {rating} stars
-              </li>
-            ))}
-          </ul>
+
+          <h3 className='text-2xl font-bold'>Customer Reviews</h3>
 
           {/* Render reviews */}
-          <h3>Reviews:</h3>
-          <ul>
+          <div>
             {reviews.map((review, index) => (
-              <li key={`review-${index}`}>
-                <p>
-                  {review.user} rated it {review.rating} stars
-                </p>
-                <p>{review.comment}</p>
-              </li>
+              <div
+                key={`review-${index}`}
+                className='bg-white rounded-md p-5 my-5'>
+                <h4 className='text-xl font-medium'>{review.comment}</h4>
+                {[...Array(5)].map((_, i) => (
+                  <input
+                    key={`user-review-${i}`}
+                    type='radio'
+                    name='rating-2'
+                    className='mask mask-star-2 bg-orange-400'
+                    checked={i !== Math.floor(review.rating)}
+                    disabled
+                  />
+                ))}
+                <span className='font-medium ml-3'>By {review.user}</span>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
     </>
@@ -130,6 +135,6 @@ export const getStaticProps = async ({ params }) => {
     `http://localhost:3000/api/products/${params.productId}`
   )
   const product = await res.json()
-  console.log(product)
+
   return { props: { product } }
 }
