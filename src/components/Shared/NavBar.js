@@ -26,7 +26,7 @@ const NavBar = () => {
   //   { id: 'category-7', name: 'Others', path: '/categories/others' }
   // ]
   useEffect(() => {
-    fetch('http://localhost:3000/api/categories')
+    fetch('https://pc-builder-mahabubulislam.vercel.app/api/categories')
       .then((res) => res.json())
       .then((data) => {
         // setLoading(false)
@@ -104,7 +104,8 @@ const NavBar = () => {
               <button
                 onClick={() =>
                   signIn('github', {
-                    callbackUrl: 'http://localhost:3000/pc-builder'
+                    callbackUrl:
+                      'https://pc-builder-mahabubulislam.vercel.app/pc-builder'
                   })
                 }>
                 Login

@@ -44,7 +44,9 @@ const PCBuilder = ({ categories }) => {
 export default PCBuilder
 
 export const getServerSideProps = async () => {
-  const categoriesRes = await fetch('http://localhost:3000/api/categories')
+  const categoriesRes = await fetch(
+    'https://pc-builder-mahabubulislam.vercel.app/api/categories'
+  )
   const categories = await categoriesRes.json()
 
   return { props: { categories } }

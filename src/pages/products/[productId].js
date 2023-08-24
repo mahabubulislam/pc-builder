@@ -115,7 +115,9 @@ const ProductDetails = ({ product }) => {
 
 export default ProductDetails
 export const getStaticPaths = async () => {
-  const productRes = await fetch('http://localhost:3000/api/products')
+  const productRes = await fetch(
+    'https://pc-builder-mahabubulislam.vercel.app/api/products'
+  )
   const products = await productRes.json()
   const paths = products.map((product) => ({
     params: { productId: product._id }
@@ -127,7 +129,7 @@ export const getStaticPaths = async () => {
 }
 export const getStaticProps = async ({ params }) => {
   const res = await fetch(
-    `http://localhost:3000/api/products/${params.productId}`
+    `https://pc-builder-mahabubulislam.vercel.app/api/products/${params.productId}`
   )
   const product = await res.json()
 

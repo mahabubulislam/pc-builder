@@ -24,14 +24,16 @@ export default function Home({ products, categories, heroProduct }) {
   )
 }
 export const getStaticProps = async () => {
-  const productRes = await fetch('http://localhost:3000/api/products')
+  const productRes = await fetch(
+    'https://pc-builder-mahabubulislam.vercel.app/api/products'
+  )
   const products = await productRes.json()
   const categoryRes = await fetch(
-    'http://localhost:3000/api/categories?featured=true'
+    'https://pc-builder-mahabubulislam.vercel.app/api/categories?featured=true'
   )
   const categories = await categoryRes.json()
   const heroProductRes = await fetch(
-    `http://localhost:3000/api/products/64e70f456db70ddcf0a25c6e`
+    `https://pc-builder-mahabubulislam.vercel.app/api/products/64e70f456db70ddcf0a25c6e`
   )
   const heroProduct = await heroProductRes.json()
   return { props: { products, categories, heroProduct } }

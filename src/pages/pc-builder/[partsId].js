@@ -16,7 +16,7 @@ const PCParts = ({ products }) => {
 export default PCParts
 export const getServerSideProps = async ({ params }) => {
   const res = await fetch(
-    `http://localhost:3000/api/categories/${params.partsId}`
+    `https://pc-builder-mahabubulislam.vercel.app/api/categories/${params.partsId}`
   )
   const products = await res.json()
 

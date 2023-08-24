@@ -11,8 +11,8 @@ const SelectComponentCard = ({ category }) => {
   return (
     <div
       key={category._id}
-      className='bg-white rounded-md p-5 my-5 shadow-sm border flex justify-between items-center w-3/5 mx-auto '>
-      <div className='flex items-center gap-5 '>
+      className='bg-white rounded-md p-5 my-5 shadow-sm border flex flex-col md:flex-row justify-between items-center w-full lg:w-3/5 lg:mx-auto '>
+      <div className='flex items-center gap-5 w-full lg:w-44 lg:justify-between'>
         <h6 className='text-lg'>{category.name}</h6>
         <Image
           className='rounded-md'
@@ -23,8 +23,8 @@ const SelectComponentCard = ({ category }) => {
         />
       </div>
       {component && (
-        <div className='w-96 flex flex-col'>
-          <div className='flex items-center gap-5'>
+        <div className='flex flex-col w-full md:w-80'>
+          <div className='flex items-center  gap-10'>
             <h6 className='font-medium'>{component?.name}</h6>
             <Image
               src={component?.image}
