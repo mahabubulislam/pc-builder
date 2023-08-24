@@ -17,7 +17,7 @@ const ProductDetails = ({ product }) => {
   return (
     <>
       <Head>
-        <title>Product Details | {name}</title>
+        <title>{name} | Dream PC</title>
       </Head>
       <section className='md:p-10 lg:p-20'>
         <div className='flex flex-col lg:flex-row gap-14  items-start'>

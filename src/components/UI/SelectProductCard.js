@@ -1,13 +1,20 @@
+import { addToBuild } from '@/redux/features/pcBuildSlice'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
 
-const ProductCard = ({ product }) => {
+const SelectProductCard = ({ product }) => {
+  const dispatch = useDispatch()
   const router = useRouter()
+  const handleAddParts = () => {
+    dispatch(addToBuild(product))
+    router.push('/pc-builder')
+  }
   return (
     <div
-      onClick={() => router.push(`/products/${product._id}`)}
       key={product._id}
-      className='card w-96 pt-5  bg-base-100 shadow-xl mt-10 cursor-pointer hover:scale-105 duration-300 ease-linear'>
+      className='card w-96 pt-5  bg-base-100 shadow-xl mt-10 '>
       <figure className='overflow-visible'>
         <Image
           width={200}
@@ -18,17 +25,19 @@ const ProductCard = ({ product }) => {
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>
-          {product.name}
+          <Link href={`/products/${product._id}`}> {product.name}</Link>
           <div className='badge badge-secondary'>NEW</div>
         </h2>
         <p>{product.description.slice(0, 50)}...</p>
         <p>$ {product.price}</p>
         <div className='card-actions justify-end'>
-          <div className='badge badge-outline'>{product.category}</div>
+          <button onClick={handleAddParts} className='btn btn-info'>
+            Add To Builder
+          </button>
         </div>
       </div>
     </div>
   )
 }
 
-export default ProductCard
+export default SelectProductCard

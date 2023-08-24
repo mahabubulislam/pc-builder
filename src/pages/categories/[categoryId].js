@@ -1,19 +1,26 @@
 import ProductCard from '@/components/UI/ProductCard'
+import Head from 'next/head'
 
 const ProductByCategories = ({ products }) => {
   return (
-    <div className='p-10'>
-      <div className=' my-5 italic'>
-        <h3 className='text-3xl font-bold mb-1 '>
-          Top Selling <span className='capitalize'>{products[0].category}</span>
-        </h3>
+    <>
+      <Head>
+        <title>{products[0].category} | Dream PC</title>
+      </Head>
+      <div className='p-10'>
+        <div className=' my-5 italic'>
+          <h3 className='text-3xl font-bold mb-1 '>
+            Top Selling{' '}
+            <span className='capitalize'>{products[0].category}</span>
+          </h3>
+        </div>
+        <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 '>
+          {products?.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
       </div>
-      <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5 '>
-        {products?.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div>
-    </div>
+    </>
   )
 }
 

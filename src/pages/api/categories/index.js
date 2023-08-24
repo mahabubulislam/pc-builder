@@ -7,7 +7,10 @@ export default async function getCollections(req, res) {
     const categoriesCollection = client
       .db('pc-builder')
       .collection('categories')
-    const categories = await categoriesCollection.find({}).toArray()
+    const categories = await categoriesCollection
+      .find({})
+      .sort({ index: 1 })
+      .toArray()
 
     res.status(200).send(categories)
   } catch (error) {
