@@ -1,10 +1,13 @@
 import SelectComponentCard from '@/components/UI/SelectComponentCard'
+import { useSession } from 'next-auth/react'
 import Head from 'next/head'
 import toast, { Toaster } from 'react-hot-toast'
 import { useSelector } from 'react-redux'
 
 const PCBuilder = ({ categories }) => {
   const { pcComponents } = useSelector((state) => state.pcBuild)
+  const { data } = useSession()
+
   return (
     <>
       <Head>
@@ -12,9 +15,13 @@ const PCBuilder = ({ categories }) => {
       </Head>
       <section className='p-10'>
         <div className='text-center'>
-          <h3 className='text-2xl font-bold '>
-            Build your own computer - Dream PC
+          <h3 className='text-4xl italic my-5'>
+            Welcome back{' '}
+            <strong className=' text-accent'>{data?.user?.name}</strong>
           </h3>
+          <h4 className='text-2xl font-bold '>
+            Build your own computer - Dream PC
+          </h4>
           <p>Select your components, You will get best pc parts</p>
         </div>
         <div>

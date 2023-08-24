@@ -1,8 +1,12 @@
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 const NavBar = () => {
   const [categories, setCategories] = useState([])
+  const { data } = useSession()
+  console.log(data)
+
   // const [isLoading, setLoading] = useState(true)
 
   // const categories = [
@@ -68,9 +72,11 @@ const NavBar = () => {
                 <ul className='p-2 z-20'>{dropdownItems}</ul>
               </details>
             </li>
-            <li>
-              <Link href={'/login'}>Login</Link>
-            </li>
+            {!data?.user && (
+              <li>
+                <Link href={'/login'}>Login</Link>
+              </li>
+            )}
           </ul>
         </div>
         <Link href={'/'} className='btn btn-ghost normal-case text-xl'>
@@ -88,8 +94,13 @@ const NavBar = () => {
               <ul className='p-2 z-50'>{dropdownItems}</ul>
             </details>
           </li>
+
           <li>
-            <Link href={'/login'}>Login</Link>
+            {data?.user ? (
+              <button onClick={() => signOut()}>Logout</button>
+            ) : (
+              <Link href={'/login'}>Login</Link>
+            )}
           </li>
         </ul>
       </div>
