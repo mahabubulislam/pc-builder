@@ -1,38 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PC Builder App
+
+Welcome to the PC Builder app! This is a web application built using Next.js and Tailwind CSS that allows users to build and customize their own PCs. Check out the live version of the app [here](https://pc-builder-mahabubulislam.vercel.app/).
+
+## Features
+
+- Build and customize your own PC configurations with ease.
+- Explore a wide range of components such as CPUs, GPUs, RAM, storage, and more.
+- Benefit from a smooth and responsive user interface, thanks to Tailwind CSS.
+- Experience fast loading times with static site generation (SSG) implemented for the home page, featured category section, and product details pages.
+- Get up-to-date information on products with server-side rendering (SSR) used for the PC Builder page.
+- Utilize Redux for efficient state management throughout the application.
+
+## Technologies Used
+
+- Next.js: A React framework that provides server rendering, routing, and more.
+- Tailwind CSS: A utility-first CSS framework for creating responsive and stylish UIs.
+- Redux: A state management library for maintaining a predictable state in your application.
+- Vercel: The platform used for deployment and hosting of the live application.
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository: `git clone https://github.com/mahabubulislam/pc-builder.git`
+2. Navigate to the project directory: `cd pc-builder`
+3. Install the dependencies: `npm install`
+4. Run the development server: `npm run dev`
+5. Open your browser and go to `http://localhost:3000` to view the app.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Project Structure
 
-Open [https://pc-builder-mahabubulislam.vercel.app](https://pc-builder-mahabubulislam.vercel.app) with your browser to see the result.
+The project structure follows a standard Next.js setup:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [https://pc-builder-mahabubulislam.vercel.app/api/hello](https://pc-builder-mahabubulislam.vercel.app/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `pages`: Contains the different pages of the app.
+- `components`: Houses reusable components used across the app.
+- `redux`: Includes Redux actions, reducers, and store configuration.
+- `styles`: Contains global styles and Tailwind CSS configuration.
