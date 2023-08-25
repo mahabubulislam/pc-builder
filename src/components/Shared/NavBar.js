@@ -6,31 +6,10 @@ const NavBar = () => {
   const [categories, setCategories] = useState([])
   const { data } = useSession()
 
-  // const [isLoading, setLoading] = useState(true)
-
-  // const categories = [
-  //   { id: 'category-1', name: 'CPU / Processor', path: '/categories/cpu' },
-  //   { id: 'category-2', name: 'Motherboard', path: '/categories/motherboard' },
-  //   { id: 'category-3', name: 'RAM', path: '/categories/ram' },
-  //   {
-  //     id: 'category-4',
-  //     name: ' Power Supply Unit',
-  //     path: '/categories/power-supply'
-  //   },
-  //   {
-  //     id: 'category-5',
-  //     name: 'Storage Device',
-  //     path: '/categories/storage-device'
-  //   },
-  //   { id: 'category-6', name: 'Monitor', path: '/categories/monitor' },
-  //   { id: 'category-7', name: 'Others', path: '/categories/others' }
-  // ]
   useEffect(() => {
-    fetch('https://pc-builder-mahabubulislam.vercel.app/api/categories')
+    fetch('/api/categories')
       .then((res) => res.json())
       .then((data) => {
-        // setLoading(false)
-
         setCategories(data)
       })
   }, [])
