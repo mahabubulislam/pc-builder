@@ -32,7 +32,7 @@ const PCBuilder = ({ categories }) => {
         <button
           onClick={() => toast.success('Your PC Build Completed')}
           className='btn mx-auto w-1/5 block btn-success'
-          disabled={pcComponents.length !== 6}>
+          disabled={pcComponents.length < 6}>
           Complete Build
         </button>
       </section>
